@@ -73,3 +73,57 @@ throttledLog(); // ❌ Ignorato (chiamato troppo presto)
 setTimeout(throttledLog, 2500); // ✅ "Eseguito!" (dopo 2.5 secondi)
 ​
  */
+
+function sum(firstNum, secondNum) {
+    return firstNum + secondNum
+}
+
+const newSum = (firstNum, secondNum) => firstNum + secondNum
+
+const round = (num) => num * num
+
+const eseguiOperazione = (firstNum, secondNum, operation) => operation(firstNum, secondNum)
+console.log(eseguiOperazione(4, 5, newSum));
+
+function creaTimer(ms) {
+    return function () {
+        setTimeout(function () {
+            console.log("Tempo scaduto!");
+        }, ms);
+    };
+}
+
+
+const timer5s = creaTimer(5000);
+timer5s();
+
+function stampaOgniSecondo(message) {
+    setInterval(() => console.log(message), 1000)
+}
+
+const print = stampaOgniSecondo('ciao')
+
+
+function creaContatoreAutomatico(interval) {
+    let contatore = 0;
+
+    return function avviaContatore() {
+        setInterval(() => {
+            contatore++;
+            console.log(`Contatore: ${contatore}`);
+        }, interval);
+    };
+}
+
+
+const start = creaContatoreAutomatico(1000);
+start();
+
+
+function eseguiEferma(message, startTime, endTime) {
+    const interval = setInterval(console.log(message), startTime)
+
+    setTimeout(clearInterval(interval), endTime)
+
+}
+console.log(eseguiEferma('Ciao', 1000, 5000));
